@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Сохраненные изображения</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.8.4/axios.js"></script>
+</head>
+<body>
+{% verbatim %}
+<div class="container" id="image_gallery">
+    <h1 class="my-4">Сохраненные изображения</h1>
+    <div class="row">
+        <div class="col-md-4 mb-4" v-for="image in images" :key="image.id">
+            <div class="card">
+                <img :src="image.image" :alt="image.description" class="card-img-top"
+                     style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ image.description }}</h5>
+                    <button @click="deleteImage(image.id)" class="btn btn-danger">Удалить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endverbatim %}
+<script src="/static/app.js"></script>
+</body>
+</html>
