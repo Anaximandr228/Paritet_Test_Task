@@ -24,21 +24,32 @@ new Vue({
 
             this.isLoading = true;
             try {
-                const formData = new FormData();
-                formData.append('image', this.image);
-                formData.append('description', this.description.trim());
-
-                const response = await axios.post('/api/image/', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
+                // Явно сериализуем данные в JSON
+                const payload = JSON.stringify({
+                    image: this.image,
+                    description: this.description.trim()
                 });
 
-                alert('Изображение успешно загружено!');
-                this.description = '';
-                this.image = null;
+                const response = await axios.post(
+                    '/api/image/',
+                    payload, // Отправляем JSON-строку
+                    {
+                        headers: {
+                            'Content-Type': 'application/json' // Явно указываем Content-Type
+                        }
+                    }
+                );
+
+                if (response.status === 201 || response.status === 200) {
+                    alert('Изображение успешно загружено!');
+                    this.description = '';
+                    this.image = null;
+                    document.getElementById('imageInput').value = '';
+                } else {
+                    alert('Произошла ошибка при загрузке изображения.');
+                }
             } catch (error) {
-                console.error('Ошибка при загрузке изображения:', error);
+                console.error('Ошибка при загрузке изображения:', error.response || error);
                 alert('Произошла ошибка при загрузке изображения. Пожалуйста, попробуйте снова.');
             } finally {
                 this.isLoading = false;
