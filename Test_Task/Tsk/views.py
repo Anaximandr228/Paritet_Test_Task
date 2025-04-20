@@ -8,8 +8,10 @@ class ImageViewSet(ModelViewSet):
     queryset = Image.objects.all()
     serializer_class = ImageSerializer
 
+
 def image_app(request):
     return render(request, 'images.html')
+
 
 def forms_app(request):
     return render(request, 'forms.html')

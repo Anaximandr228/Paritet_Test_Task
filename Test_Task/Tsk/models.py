@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Модель Image
 class Image(models.Model):
     image = models.TextField()
