@@ -1,0 +1,5 @@
+venv
+.idea
+.git
+.gitignore
+paritet_test.postman_collection.json
