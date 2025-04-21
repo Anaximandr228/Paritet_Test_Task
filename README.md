@@ -19,7 +19,6 @@
 > 1. Для создания контейнера введите команду ``docker compose build``
 >2. Для запуска контейнера введите команду ``docker compose up -d``
 >3. Для создания базы данных введите команду ``docker exec paritet_test_task-web-1 bash -c "python manage.py migrate"``
->3. Для запуска тестов пропишите команду ``docker exec so_test_app-web-1 bash -c "poetry run pytest"``
 >4. После запуска контейнера интерфейсы и API доступны по адресу: http://127.0.0.1:8000/
 
 ## Для проверки эндпоинтов:
