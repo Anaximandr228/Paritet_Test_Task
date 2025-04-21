@@ -25,7 +25,6 @@ new Vue({
 
             this.isLoading = true;
             try {
-                // Явно сериализуем данные в JSON
                 const payload = JSON.stringify({
                     image: this.image,
                     description: this.description.trim()
