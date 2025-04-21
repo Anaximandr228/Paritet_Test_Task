@@ -16,7 +16,8 @@ new Vue({
                 reader.readAsDataURL(file);
             }
         },
-        async submitForm() {
+        async submitForm(event) {
+            event.preventDefault();
             if (!this.image || !this.description.trim()) {
                 alert('Пожалуйста, выберите изображение и введите описание!');
                 return;
@@ -32,16 +33,15 @@ new Vue({
 
                 const response = await axios.post(
                     '/api/image/',
-                    payload, // Отправляем JSON-строку
+                    payload,
                     {
                         headers: {
-                            'Content-Type': 'application/json' // Явно указываем Content-Type
+                            'Content-Type': 'application/json'
                         }
                     }
                 );
 
                 if (response.status === 201 || response.status === 200) {
-                    alert('Изображение успешно загружено!');
                     this.description = '';
                     this.image = null;
                     document.getElementById('imageInput').value = '';
