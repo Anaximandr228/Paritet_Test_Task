@@ -65,11 +65,11 @@ WSGI_APPLICATION = 'Test_Task.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'image_db',  # Название базы данных PostgeSQL
-        'USER': 'postgres',  # Имя пользователь PostgreSQL
-        'PASSWORD': 'rtf558Ur',  # Пароль пользователя PostgreSQL
+        'NAME': os.getenv("POSTGRES_DB",'image_db'),  # Название базы данных PostgeSQL
+        'USER': os.getenv("POSTGRES_USER",'postgres'),  # Имя пользователь PostgreSQL
+        'PASSWORD': os.getenv("POSTGRES_PASSWORD",'rtf558Ur'),  # Пароль пользователя PostgreSQL
         'HOST': os.getenv("POSTGRES_HOST", '127.0.0.1'),
-        'PORT': '5432',
+        'PORT': os.getenv("DATABASE_PORT",'5432',)
     }
 }
 
